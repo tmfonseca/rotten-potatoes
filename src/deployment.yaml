@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:5.0.5
+        image: mongo:4.4.11
         ports:
         - containerPort: 27017
         env:
@@ -24,7 +24,6 @@ spec:
             value: mongopwd
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,7 +35,6 @@ spec:
   - port: 27017
   type: ClusterIP
 ---
-
 ## Aplicacao rotten potatoes deploy
 
 apiVersion: apps/v1
@@ -44,6 +42,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: web
@@ -81,4 +80,4 @@ spec:
   - port: 80
     targetPort: 5000
     nodePort: 30000
-  type: NodePort
+  type: LoadBalancer 
