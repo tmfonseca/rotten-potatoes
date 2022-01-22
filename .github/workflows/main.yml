@@ -46,4 +46,4 @@ jobs:
           with:
             images: tmfonseca/rotten-potatoes:${{github.run_number}}
             manifests: |
-              k8s/deployment.yaml
+              src/deployment.yaml
